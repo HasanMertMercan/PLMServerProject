@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ObjectPropertyPolicy xmlns="http://teamcenter.com/Schemas/Soa/ObjectPropertyPolicy">
+	<ObjectType name="WorkspaceObject">
+		<Property name="object_string" />
+		<Property name="last_mod_date" />
+		<Property name="creation_date" />
+		<Property name="object_name" />
+		<Property name="object_type" />
+		<Property name="owning_user" />
+		<Property name="ref_list" withProperties="true" />
+		<Property name="item_id"/>
+		<Property name="item_revision_id"/>
+		<Property name="ref_names"/>
+	</ObjectType>
+	<ObjectType name="ImanFile">
+		<Property name="file_name" />
+		<Property name="file_ext" />
+		<Property name="file_size" />
+	</ObjectType>
+	
+	<ObjectType name="ItemRevision">
+		<Property name="creation_date" />
+	</ObjectType>
+</ObjectPropertyPolicy>

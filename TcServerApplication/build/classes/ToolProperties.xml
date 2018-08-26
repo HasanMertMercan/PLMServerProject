@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tools>
+	<tool>
+		<id>1</id>
+		<name>Screw Driver</name>
+		<filename>screwdriver.jt</filename>
+		<revisionid>A</revisionid>
+	</tool>
+	<tool>
+		<id>2</id>
+		<name>hammer</name>
+		<filename>hammer.jt</filename>
+		<revisionid>A</revisionid>
+	</tool>
+	<tool>
+		<id>3</id>
+		<name>nippers</name>
+		<filename>nippers.jt</filename>
+		<revisionid>A</revisionid>
+	</tool>
+</tools>
