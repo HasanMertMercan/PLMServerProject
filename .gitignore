@@ -1,6 +1,6 @@
-AppXCredentialManager.class
-AppXExceptionHandler.class
-AppXModelEventListener.class
-AppXPartialErrorListener.class
-AppXRequestListener.class
-AppXSession.class
+AppXCredentialManager.java
+AppXExceptionHandler.java
+AppXModelEventListener.java
+AppXPartialErrorListener.java
+AppXRequestListener.java
+AppXSession.java
