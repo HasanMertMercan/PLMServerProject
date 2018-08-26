@@ -107,16 +107,16 @@
     <Compile Include="Assets\Scripts\PlantQrReader.cs" />
     <None Include="Assets\OBJImport\readme.txt" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>C:/ARClient/ARTeamcenterClient/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>C:/Git/PLMServerProject/ARClient/ARTeamcenterClient/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/ARClient/ARTeamcenterClient/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Git/PLMServerProject/ARClient/ARTeamcenterClient/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/ARClient/ARTeamcenterClient/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Git/PLMServerProject/ARClient/ARTeamcenterClient/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/ARClient/ARTeamcenterClient/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Git/PLMServerProject/ARClient/ARTeamcenterClient/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -314,7 +314,7 @@
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="zxing.unity (1)">
-      <HintPath>C:/ARClient/ARTeamcenterClient/Assets/Plugins/zxing.unity (1).dll</HintPath>
+      <HintPath>C:/Git/PLMServerProject/ARClient/ARTeamcenterClient/Assets/Plugins/zxing.unity (1).dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/a17hasme/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
