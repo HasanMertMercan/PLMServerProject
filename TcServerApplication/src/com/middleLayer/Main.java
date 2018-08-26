@@ -37,6 +37,7 @@ public class Main {
 			System.out.println("Machine CAD Data " + i);
 			System.out.println(getMachineDataFromTeamcenter.getMachineData().get(i).getMachineCADFile());
 		}*/
+		
 		new Main();	
 		
 	}
@@ -108,18 +109,16 @@ public class Main {
 						isSessionCreated = false;
 						System.out.println("There is no teamcenter session!");
 					}
-				}
-				else if(jsonObjectFlag.equals("LoginResponse")) 
-				{
+					Socket responseSocket = ClientCommunicationSocket.accept();
+					
 					//Send LoginResponse to Client
-					CommunicationMain communicationMain = new CommunicationMain();
-					communicationMain.SendLoginResponse(isSessionCreated, socket);
+					communicationMain.SendLoginResponse(isSessionCreated, responseSocket);
 				}
 				else if(jsonObjectFlag.equals("FactoryQR")) 
 				{
 					//Get Machines from teamcenter based on the qrCode of the plant
 					CommunicationMain communicationMain = new CommunicationMain();
-					machineList = communicationMain.receiveFactoryQrCode(socket);
+					machineList = communicationMain.receiveFactoryQrCode(jsonObjectMain);
 					
 					//AssignRandomError
 					AssignRandomError assignRandomError = new AssignRandomError(machineList);
@@ -134,12 +133,11 @@ public class Main {
 					yellowStateMachines = smwyes.getYellowStateMachines();
 					machinesWithGreenError = smwyes.getGreenStateMachines();
 					machinesWithRedError = smwyes.getRedStateMachines();
-				}
-				else if(jsonObjectFlag.equals("YellowSateMachines")) 
-				{
+
+					Socket responseSocket = ClientCommunicationSocket.accept();
+					
 					//Send Yellow State Machines to Client
-					CommunicationMain communicationMain = new CommunicationMain();
-					communicationMain.SendYellowStateMachines(yellowStateMachines, socket);
+					communicationMain.SendYellowStateMachines(yellowStateMachines, responseSocket);
 				}
 				else if(jsonObjectFlag.equals("OptimisationRequest")) 
 				{
@@ -215,14 +213,17 @@ public class Main {
 							}
 						}
 					}
-				}
-				else if(jsonObjectFlag.equals("OptimisationResponse")) 
-				{
+				
+					Socket responseSocket = ClientCommunicationSocket.accept();
+					
 					//Send Fully Optimised List to Client
 					CommunicationMain sendGreenOptimisedListToClient = new CommunicationMain();
 					CommunicationMain sendRedOprimisedListTiClient = new CommunicationMain();
-					sendGreenOptimisedListToClient.SendOptimisedList(optimisedRootForGreenMachines, socket);
-					sendRedOprimisedListTiClient.SendOptimisedList(optimisedRootForRedMachines, socket);
+					sendGreenOptimisedListToClient.SendOptimisedList(optimisedRootForGreenMachines, responseSocket);
+					
+					Socket responseSocket2 = ClientCommunicationSocket.accept();
+					
+					sendRedOprimisedListTiClient.SendOptimisedList(optimisedRootForRedMachines, responseSocket2);
 				}
 				else if(jsonObjectFlag.equals("MachineQR")) 
 				{
@@ -230,35 +231,32 @@ public class Main {
 					CommunicationMain communicationMain = new CommunicationMain();
 					if(!completedMachineList.isEmpty()) 
 					{
-						machineDetails = communicationMain.receiveMachineQrCodeWithOptimisation(socket, completedMachineList);
+						machineDetails = communicationMain.receiveMachineQrCodeWithOptimisation(jsonObjectMain, completedMachineList);
 					}
 					else 
 					{
-						machineDetails = communicationMain.receiveMachineQrCodeWithoutOptimisation(socket);
+						machineDetails = communicationMain.receiveMachineQrCodeWithoutOptimisation(jsonObjectMain);
 					}
-				}
-				else if(jsonObjectFlag.equals("MachineResponse"))
-				{
+				
+					Socket responseSocket = ClientCommunicationSocket.accept();
+					
 					//Send Machine Details to the client
-					CommunicationMain communicationMain = new CommunicationMain();
-					communicationMain.SendMachineDetailsToClient(machineDetails, socket);
-				}
-				else if(jsonObjectFlag.equals("MachineCADFileResponse")) 
-				{
-					CommunicationMain communicationMain = new CommunicationMain();
-					communicationMain.SendCadModelToClient(machineDetails, socket);
+					communicationMain.SendMachineDetailsToClient(machineDetails, responseSocket);
+				
+					Socket responseSocket2 = ClientCommunicationSocket.accept();
+					
+					communicationMain.SendCadModelToClient(machineDetails, responseSocket2);
 				}
 				else if(jsonObjectFlag.equals("UpdateInformationRequest")) 
 				{
 					//Receive List update request 
 					CommunicationMain communicationMain = new CommunicationMain();
-					instructionListProperties = communicationMain.UpdateRequestInstructionList(socket);
-				}
-				else if (jsonObjectFlag.equals("UpdateInformationResponse")) 
-				{
+					instructionListProperties = communicationMain.UpdateRequestInstructionList(jsonObjectMain);
+				
+					Socket responseSocket = ClientCommunicationSocket.accept();
+					
 					//send the updated list back
-					CommunicationMain communicationMain = new CommunicationMain();
-					communicationMain.SendUpdatedInformationList(instructionListProperties, socket);
+					communicationMain.SendUpdatedInformationList(instructionListProperties, responseSocket);
 				}
 				else 
 				{

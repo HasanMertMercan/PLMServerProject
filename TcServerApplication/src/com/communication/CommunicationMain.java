@@ -1,13 +1,10 @@
 package com.communication;
 
 import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -44,33 +41,27 @@ public class CommunicationMain {
 		return updatedMachineList;
 	}
 	
-	public ArrayList<MachineProperties> receiveFactoryQrCode(Socket socket) throws IOException
+	public ArrayList<MachineProperties> receiveFactoryQrCode(String jsonObjectMain) throws IOException
 	{
-		InputStream input = socket.getInputStream();
-	    BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-	    String factoryId = reader.readLine();    // reads a line of text
+	    String factoryId = jsonObjectMain;    // reads a line of text
 		
 		GetFactoryDataFromTeamcenter getFactoryDataFromTeamcenter = new GetFactoryDataFromTeamcenter(factoryId);
 		machineList = getFactoryDataFromTeamcenter.getMachineIds();
 		return machineList;		
 	}
 	
-	public MachineProperties receiveMachineQrCodeWithOptimisation(Socket socket, ArrayList<MachineProperties> completedMachineList) throws IOException, NotLoadedException 
+	public MachineProperties receiveMachineQrCodeWithOptimisation(String jsonObjectMain, ArrayList<MachineProperties> completedMachineList) throws IOException, NotLoadedException 
 	{
-		InputStream input = socket.getInputStream();
-	    BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-	    String machineId = reader.readLine();    // reads a line of text
+	    String machineId = jsonObjectMain;    // reads a line of text
 		//Bring associated machine with operation details and CAD data
 		MachineDetails getMachineDetails = new MachineDetails(machineId, completedMachineList);
 		MachineProperties machineDetails = getMachineDetails.getCurrentMachine().get(0);
 		return machineDetails;
 	}
 	
-	public MachineProperties receiveMachineQrCodeWithoutOptimisation(Socket socket) throws IOException
+	public MachineProperties receiveMachineQrCodeWithoutOptimisation(String jsonObjectMain) throws IOException
 	{
-		InputStream input = socket.getInputStream();
-	    BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-	    String machineId = reader.readLine();    // reads a line of text
+	    String machineId = jsonObjectMain;    // reads a line of text	    
 		
 		MachineDetails getMachineDetails = new MachineDetails(machineId);
 		MachineProperties machineDetails = getMachineDetails.getCurrentMachine().get(0);
@@ -111,11 +102,9 @@ public class CommunicationMain {
 
 	}
 	
-	public UpdateInstructionListProperties UpdateRequestInstructionList(Socket socket) throws IOException, NotLoadedException 
+	public UpdateInstructionListProperties UpdateRequestInstructionList(String jsonObjectMain) throws IOException, NotLoadedException 
 	{
-		InputStream input = socket.getInputStream();
-	    BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-	    String ClientString = reader.readLine();    // reads a line of text
+	    String ClientString = jsonObjectMain;    // reads a line of text
 	    
 	  //Deserilaize Login Arguments
 	    Gson gson = new GsonBuilder().create();
