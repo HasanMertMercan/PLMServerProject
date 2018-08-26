@@ -1,6 +1,6 @@
 package com.optimisation;
 
-public class City {
+public class City { 
 	String _machineId;
 	int x;
     int y;
