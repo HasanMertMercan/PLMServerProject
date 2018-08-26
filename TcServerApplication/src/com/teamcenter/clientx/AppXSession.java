@@ -42,6 +42,8 @@ public class AppXSession
      * Services Framework to get user credentials.
      *
      */
+    
+    
     private static AppXCredentialManager credentialManager;
 
     /**
