@@ -99,8 +99,8 @@ public class Main {
 					
 					String userName = loginProperties.getUsername();
 					String password = loginProperties.getPassword();
-					//createTeamcenterSession("http://127.0.0.1", userName, password);
-					if(/*!this.user.get_user_id().equals(userName)*/ userName.equals("e1") && password.equals("123hm123")) 
+					createTeamcenterSession("http://127.0.0.1", userName, password);
+					if(this.user.get_user_id().equals(userName) /*userName.equals("e1") && password.equals("123hm123")*/) 
 					{
 						isSessionCreated = true;
 					}
