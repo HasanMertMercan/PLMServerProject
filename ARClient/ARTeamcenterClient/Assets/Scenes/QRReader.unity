@@ -380,7 +380,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 123.69995, y: 0}
+  m_SizeDelta: {x: 0, y: 33.684204}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1231086224
 MonoBehaviour:
@@ -439,7 +439,6 @@ GameObject:
   - component: {fileID: 1427162463}
   - component: {fileID: 1427162462}
   - component: {fileID: 1427162465}
-  - component: {fileID: 1427162466}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -513,24 +512,13 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1427162461}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d2a2443d3ab1134dbac605a33093b1c, type: 3}
+  m_Script: {fileID: 11500000, guid: 8de37f008c430994abfc0c0f98d22ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   background: {fileID: 1231086225}
   fit: {fileID: 1231086224}
---- !u!114 &1427162466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1427162461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4053d67e494b7249b9a04af279115c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1467096311
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,7 +597,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1467096316}
-        m_MethodName: ReaderButtonOnClick
+        m_MethodName: PlantButtonOnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -663,9 +651,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1467096311}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4053d67e494b7249b9a04af279115c6, type: 3}
+  m_Script: {fileID: 11500000, guid: 8de37f008c430994abfc0c0f98d22ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  background: {fileID: 1231086225}
+  fit: {fileID: 1231086224}
 --- !u!1 &1652486325
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,9 +777,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1725491533}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c8eac093694a7c42a004cafebbc68ed, type: 3}
+  m_Script: {fileID: 11500000, guid: 8de37f008c430994abfc0c0f98d22ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  background: {fileID: 1231086225}
+  fit: {fileID: 1231086224}
 --- !u!114 &1725491536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -830,7 +822,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1725491535}
-        m_MethodName: ReaderButtonOnClick
+        m_MethodName: MachineButtonOnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

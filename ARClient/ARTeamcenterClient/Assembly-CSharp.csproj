@@ -99,12 +99,11 @@
     <Compile Include="Assets\Scripts\ListController.cs" />
     <Compile Include="Assets\Scripts\ListItemController.cs" />
     <Compile Include="Assets\Scripts\Login.cs" />
-    <Compile Include="Assets\Scripts\MachineQrReader.cs" />
     <Compile Include="Assets\Scripts\MainMenuScript.cs" />
     <Compile Include="Assets\Scripts\OperationSceneScript.cs" />
     <Compile Include="Assets\Scripts\OptimisedListItemController.cs" />
     <Compile Include="Assets\Scripts\OptimisedRootsForMachines.cs" />
-    <Compile Include="Assets\Scripts\PlantQrReader.cs" />
+    <Compile Include="Assets\Scripts\QRCameraScript.cs" />
     <None Include="Assets\OBJImport\readme.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Git/PLMServerProject/ARClient/ARTeamcenterClient/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
