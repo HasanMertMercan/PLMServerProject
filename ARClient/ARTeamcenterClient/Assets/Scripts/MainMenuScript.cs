@@ -20,7 +20,7 @@ public class MainMenuScript : MonoBehaviour {
 
     public void QRReaderButtonOnClick()
     {
-        SceneManager.LoadScene("ReadQrCode");
+        SceneManager.LoadScene("QRReader");
     }
 
     public void ListButtonOnClick()

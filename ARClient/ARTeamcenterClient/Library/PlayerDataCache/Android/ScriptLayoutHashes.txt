@@ -1,10 +1,13 @@
 Android
 PlayerPath?
-C:/ARClient/ARTeamcenterClient/FirstTry.apk
+C:/ARClient/ARTeamcenterClient/AllPages.apk
 SceneListBegin?
 Assets/Scenes/Login.unity
 Assets/Scenes/MainMenu.unity
 Assets/Scenes/QRReader.unity
+Assets/Scenes/OperationScene.unity
+Assets/Scenes/OptimisedRoot.unity
+Assets/Scenes/YellowStateMachines.unity
 SceneListEnd?
 75a18e3043c62a9905c96ef26d677e7d Assembly-CSharp.dll:.MoverioTutorialController
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.Explosion

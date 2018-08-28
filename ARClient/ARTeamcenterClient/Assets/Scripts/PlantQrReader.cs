@@ -35,6 +35,46 @@ public class PlantQrReader : MonoBehaviour {
 
     public void ReaderButtonOnClick()
     {
+        //OnGUI();
+        // drawing the camera on screen
+        
+        //GUI.DrawTexture(screenRect, camTexture, ScaleMode.ScaleToFit);
+
+        // do the reading — you might want to attempt to read less often than you draw on the screen for performance sake
+        try
+        {
+            IBarcodeReader barcodeReader = new BarcodeReader();
+            // decode the current frame
+            var result = barcodeReader.Decode(camTexture.GetPixels32(), camTexture.width, camTexture.height);
+
+            if (result != null)
+            {
+                Debug.Log("DECODED TEXT FROM QR: " + result.Text);
+            }
+
+            QrResult = result.Text;
+            JsonEntity jsonEntity = new JsonEntity();
+            jsonEntity.JsonFlag = "FactoryQR";
+            jsonEntity.JsonObject = QrResult;
+            string jsonString = JsonUtility.ToJson(jsonEntity);
+            PlantQrCommunication qrCommunication = new PlantQrCommunication();
+            qrCommunication.SendDataToServer(jsonString);
+
+            //LoadScene which displays OptimisedRootList of Machines
+            SceneManager.LoadScene("YellowStateMachines");
+
+        }
+        catch (Exception ex)
+        {
+            Debug.LogWarning(ex.Message);
+            //QrResult = "";
+        }
+
+    }
+    
+    /*
+    void OnGUI()
+    {
         // drawing the camera on screen
         GUI.DrawTexture(screenRect, camTexture, ScaleMode.ScaleToFit);
 
@@ -68,41 +108,6 @@ public class PlantQrReader : MonoBehaviour {
             //QrResult = "";
         }
 
-    }
-    /*
-    void OnGUI()
-    {
-        // drawing the camera on screen
-        GUI.DrawTexture(screenRect, camTexture, ScaleMode.ScaleToFit);
-        // do the reading — you might want to attempt to read less often than you draw on the screen for performance sake
-        try
-        {
-            IBarcodeReader barcodeReader = new BarcodeReader();
-            // decode the current frame
-            var result = barcodeReader.Decode(camTexture.GetPixels32(), camTexture.width, camTexture.height);
-
-            if (result != null)
-            {
-                Debug.Log("DECODED TEXT FROM QR: " +result.Text);
-            }
-
-            QrResult = result.Text;
-            QrCommunication qrCommunication = new QrCommunication();
-            qrCommunication.SendDataToServer(QrResult);
-
-            QrCommunication qrCommunication2 = new QrCommunication();
-            qrCommunication.ReceiveDataFromServer();
-            //The data comes from here is a list of Machines.
-            //Deserilize the received data to MachineEntity
-            //LoadScene which displays OptimisedRootList of Machines
-
-        }
-        catch (Exception ex)
-        {
-            Debug.LogWarning(ex.Message);
-            //QrResult = "";
-        }
-        
     }*/
 
 }

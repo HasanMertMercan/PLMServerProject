@@ -26,4 +26,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/QRReader.unity
     guid: 6af47903c346926408742c8f6fa78bf0
+  - enabled: 1
+    path: Assets/Scenes/OperationScene.unity
+    guid: bf364d458732bb84f823606ba5da14a6
+  - enabled: 1
+    path: Assets/Scenes/OptimisedRoot.unity
+    guid: fe6f5c8b2e7738d4a860dc2879aefebf
+  - enabled: 1
+    path: Assets/Scenes/YellowStateMachines.unity
+    guid: 39e6c3e002a5bbc499d97524bc77b6d2
   m_configObjects: {}
