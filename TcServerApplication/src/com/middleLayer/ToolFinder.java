@@ -13,7 +13,7 @@ public class ToolFinder {
 	//This tool id comes from AR client. When operator need to see the tool, this id will be sent by AR client to the server
 	//These parameter will be sent (This method will be called) whenever the user wants to see the tool!
 	//These informations are already stored in the 
-	public ToolFinder(String toolId) throws IOException 
+	public ToolFinder(String toolId) throws IOException, InterruptedException 
 	{
 		int size = xmlReaderTool.getToolPropertiesList().size();;
 		for(int i = 0; i < size; i++) 

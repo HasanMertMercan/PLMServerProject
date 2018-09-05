@@ -1,15 +1,22 @@
 package com.middleLayer;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
 import com.teamcenter.soa.client.FileManagementUtility;
 import com.teamcenter.soa.common.ObjectPropertyPolicy;
+import com.teamcenter.soa.exceptions.CanceledOperationException;
 import com.teamcenter.soa.exceptions.NotLoadedException;
 import com.teamcenter.soa.client.model.strong.User;
 import com.communication.CommunicationMain;
@@ -19,15 +26,17 @@ import com.optimisation.City;
 import com.optimisation.OptimiseRootInsidePlant;
 import com.optimisation.SelectMachinesWithYellowErrorState;
 import com.properties.AcceptedJsonObject;
+import com.properties.ByteEntity;
 import com.properties.LoginProperties;
 import com.properties.MachineProperties;
 import com.properties.UpdateInstructionListProperties;
-import com.teamcenter.clientx.*;
+import com.teamcenter.clientx.AppXSession;
+import com.teamcenter.schemas.soa._2006_03.exceptions.InvalidCredentialsException;
 import com.teamcenter.services.strong.core.SessionService;
 
 public class Main {
 	
-	public static void main(String[] args) throws IOException, NotLoadedException {
+	public static void main(String[] args) throws IOException, NotLoadedException, CanceledOperationException, InterruptedException {
 		// TODO Auto-generated method stub
 		
 		/*GetMachineDataFromTeamcenter getMachineDataFromTeamcenter = new GetMachineDataFromTeamcenter("C:/Teamcenter önemli/Zuccarello.obj");
@@ -38,8 +47,54 @@ public class Main {
 			System.out.println(getMachineDataFromTeamcenter.getMachineData().get(i).getMachineCADFile());
 		}*/
 		
-		new Main();	
+		//new Main();	
+		/*String factoryId = "007660";
+		GetFactoryDataFromTeamcenter dataFromTeamcenter = new GetFactoryDataFromTeamcenter(factoryId);
+		ArrayList<MachineProperties> factoryMachines = dataFromTeamcenter.getMachineIds();
+		int size = factoryMachines.size();
+		for(int i = 0; i < size; i++) 
+		{
+			System.out.println(factoryMachines.get(i).getId());
+		}*/
 		
+		@SuppressWarnings("resource")
+		ServerSocket ClientCommunicationSocket = new ServerSocket(35010);
+		Socket socket = ClientCommunicationSocket.accept();
+		CADConverter cadConverter = new CADConverter("C:\\Teamcenter önemli\\jtfiles\\gokart_main_assy.jt");
+		
+		System.out.println(cadConverter.getCADFileFinal());
+	    File file = new File(cadConverter.getCADFileFinal());
+	 
+	    //read file to buffer
+	    byte[] buffer = new byte[(int)file.length()];
+	    DataInputStream dis = new DataInputStream(new FileInputStream(file));
+	    dis.read(buffer, 0, buffer.length);
+	    
+		OutputStream output = socket.getOutputStream();
+	    PrintWriter writer = new PrintWriter(output, true);
+	    ByteEntity byteEntity = new ByteEntity();
+	    byteEntity.setFileSize(buffer);
+	    Gson gson = new GsonBuilder().create();
+	    String input = gson.toJson(byteEntity);
+	    writer.println(input);
+		/*
+		PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
+
+
+		    //send file length
+		    out.println(file.length());
+
+		    //read file to buffer
+		    byte[] buffer = new byte[(int)file.length()];
+		    DataInputStream dis = new DataInputStream(new FileInputStream(file));
+		    dis.read(buffer, 0, buffer.length);
+
+		    //send file
+		    BufferedOutputStream bos = new BufferedOutputStream(socket.getOutputStream());
+		    bos.write(buffer);
+		    bos.flush();
+		    dis.close();*/
+		//ClientCommunicationSocket.close();
 	}
 	
 	private AppXSession session;
@@ -48,7 +103,7 @@ public class Main {
 	private FileManagementUtility fileManager;
 	private boolean isSessionCreated;
 	
-	public Main() throws IOException, NotLoadedException
+	public Main() throws IOException, NotLoadedException, CanceledOperationException, InterruptedException
 	{
 		
 			@SuppressWarnings("resource")
@@ -99,7 +154,7 @@ public class Main {
 					
 					String userName = loginProperties.getUsername();
 					String password = loginProperties.getPassword();
-					//createTeamcenterSession("http://127.0.0.1", userName, password);
+					//createTeamcenterSession("http://127.0.0.1:8080", userName, password);
 					if(/*this.user.get_user_id().equals(userName)*/ userName.equals("e1") && password.equals("123hm123")) 
 					{
 						isSessionCreated = true;
@@ -266,12 +321,12 @@ public class Main {
 			}
 	}
 		
-	public void createTeamcenterSession(String host, String username, String password)
+	public void createTeamcenterSession(String host, String username, String password) throws InvalidCredentialsException, CanceledOperationException
 	{
 		System.out.println("Starting a session on " + host); // prints on screen the host for the session
 		this.session = new AppXSession (host);
 		System.out.println("Logging in with username " + username); // prints on screen the session's user
-		this.user = this.session.login(username, password); // uses username and password to log into Teamcenter
+		this.user = (User) this.session.login(username, password); // uses username and password to log into Teamcenter
 		
 		try
 		{

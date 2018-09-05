@@ -35,5 +35,9 @@
 	<classpathentry exported="true" kind="lib" path="C:/JARFiles/org.apache.commons.httpclient.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/JARFiles/commons-logging-1.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/JARFiles/commons-ssl.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/JARFiles/xz-1.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/JARFiles/jReality.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/JARFiles/xercesImpl-2.9.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/JARFiles/commons-codec-1.11.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

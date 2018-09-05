@@ -14,7 +14,7 @@ public class GetToolDataFromTeamcenter {
 	
 	private ArrayList<ToolProperties> toolData = new ArrayList<ToolProperties>();
 	
-	public GetToolDataFromTeamcenter(String toolId, String fileName, String revisionId) throws IOException 
+	public GetToolDataFromTeamcenter(String toolId, String fileName, String revisionId) throws IOException, InterruptedException 
 	{
 		GetFileFromTeamcenter getFileFromTeamcenter = new GetFileFromTeamcenter(toolId, fileName, revisionId);
 		String absoluteFileName = getFileFromTeamcenter.getFile().getAbsolutePath();

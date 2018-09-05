@@ -47,7 +47,8 @@ public class OperationSceneScript : MonoBehaviour {
         string[] file = CadFilenameAbsolute.Split('/');
         int counter = file.Length;
         string CadFilename = file[counter - 1]; //Exact Filename => example.obj
-
+        
+        //string CadFilename = "gokart_main_assy.obj";
         //This filepath can be changed according to device
         string FilePath = "C:/ARClient/ARTeamcenterClient/Assets/Resources/" + CadFilename;
         byte[] FileBuffer = machineQrCommunication.ReceiveCADFileFromServer();
@@ -61,6 +62,7 @@ public class OperationSceneScript : MonoBehaviour {
         //Load CAD model to the scene
         CADImage = OBJLoader.LoadOBJFile(FilePath); //I hope this will work
 
+        
         //Display first step of the operation on the screen
         InstructionList = machine.operationInstructionList;
         size = InstructionList.Count;
@@ -69,7 +71,7 @@ public class OperationSceneScript : MonoBehaviour {
                                "If you feel you need more information, click the button below!";
 
         //Highlight the part which will be changed
-
+        
     }
 	
 	// Update is called once per frame

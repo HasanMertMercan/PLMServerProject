@@ -50,7 +50,7 @@ public class CommunicationMain {
 		return machineList;		
 	}
 	
-	public MachineProperties receiveMachineQrCodeWithOptimisation(String jsonObjectMain, ArrayList<MachineProperties> completedMachineList) throws IOException, NotLoadedException 
+	public MachineProperties receiveMachineQrCodeWithOptimisation(String jsonObjectMain, ArrayList<MachineProperties> completedMachineList) throws IOException, NotLoadedException, InterruptedException 
 	{
 	    String machineId = jsonObjectMain;    // reads a line of text
 		//Bring associated machine with operation details and CAD data
@@ -59,7 +59,7 @@ public class CommunicationMain {
 		return machineDetails;
 	}
 	
-	public MachineProperties receiveMachineQrCodeWithoutOptimisation(String jsonObjectMain) throws IOException
+	public MachineProperties receiveMachineQrCodeWithoutOptimisation(String jsonObjectMain) throws IOException, InterruptedException
 	{
 	    String machineId = jsonObjectMain;    // reads a line of text	    
 		

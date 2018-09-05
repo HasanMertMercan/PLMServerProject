@@ -15,7 +15,7 @@ public class MachineDetails {
 	private ArrayList<MachineProperties> currentMachine = new ArrayList<MachineProperties>();
 
 	//Constructor for basic operations, Used for testing purposes 
-	public MachineDetails(String machineId) throws IOException 
+	public MachineDetails(String machineId) throws IOException, InterruptedException 
 	{
 		NonOptimisedMachines = xmlReaderMachine.getMachinePropertiesList();
 		int size = NonOptimisedMachines.size();
@@ -42,7 +42,7 @@ public class MachineDetails {
 	
 	//Constructor to get MachineCADData
 	//machineId --> ARClient, completedMachineList --> The list which returned from AssignOperation
-	public MachineDetails(String machineId, ArrayList<MachineProperties> completedMachineList) throws NotLoadedException, IOException
+	public MachineDetails(String machineId, ArrayList<MachineProperties> completedMachineList) throws NotLoadedException, IOException, InterruptedException
 	{
 		int size = completedMachineList.size();
 		

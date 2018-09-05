@@ -12,6 +12,7 @@
 		<Property name="item_revision_id"/>
 		<Property name="ref_names"/>
 	</ObjectType>
+	
 	<ObjectType name="ImanFile">
 		<Property name="file_name" />
 		<Property name="file_ext" />
@@ -20,5 +21,9 @@
 	
 	<ObjectType name="ItemRevision">
 		<Property name="creation_date" />
+	</ObjectType>
+	
+	<ObjectType name="BOMLine">
+	<Property name="bl_rev_ps_children"/>
 	</ObjectType>
 </ObjectPropertyPolicy>

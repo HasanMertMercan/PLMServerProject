@@ -3,6 +3,8 @@ package com.middleLayer;
 import java.util.ArrayList;
 
 import com.properties.MachineProperties;
+import com.teamcenter.clientx.AppXSession;
+import com.teamcenter.services.internal.strong.core.DataManagementService;
 import com.teamcenter.soa.client.model.strong.Mfg0BvrPlantResource;
 import com.teamcenter.soa.exceptions.NotLoadedException;
 

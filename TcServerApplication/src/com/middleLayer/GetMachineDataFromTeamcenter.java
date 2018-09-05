@@ -12,7 +12,7 @@ public class GetMachineDataFromTeamcenter {
 	private ArrayList<MachineProperties> machineData = new ArrayList<MachineProperties>();
 	private MachineProperties machineProperties = new MachineProperties();
 	
-	public GetMachineDataFromTeamcenter(String machineId, String fileName, String revisionId) throws IOException 
+	public GetMachineDataFromTeamcenter(String machineId, String fileName, String revisionId) throws IOException, InterruptedException 
 	{
 		//TODO
 		GetFileFromTeamcenter getFileFromTeamcenter = new GetFileFromTeamcenter(machineId, fileName, revisionId);
@@ -22,7 +22,7 @@ public class GetMachineDataFromTeamcenter {
 	}
 	
 	//Test Constructor
-	public GetMachineDataFromTeamcenter(String absoluteFileName) throws IOException  
+	public GetMachineDataFromTeamcenter(String absoluteFileName) throws IOException, InterruptedException  
 	{
 		CADConverter cadConverter = new CADConverter(absoluteFileName);
 		machineData.add(machineProperties);
