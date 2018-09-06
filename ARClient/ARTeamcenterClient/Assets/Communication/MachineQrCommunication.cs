@@ -82,7 +82,7 @@ public class MachineQrCommunication{
         {
             int noChars = networkStream.Read(buffer, read, toRead);
             read += noChars;
-            length -= noChars;
+            toRead -= noChars;
         }
 
         return buffer;
