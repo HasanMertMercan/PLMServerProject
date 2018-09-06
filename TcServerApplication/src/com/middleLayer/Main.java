@@ -47,7 +47,7 @@ public class Main {
 			System.out.println(getMachineDataFromTeamcenter.getMachineData().get(i).getMachineCADFile());
 		}*/
 		
-		//new Main();	
+		new Main();	
 		/*String factoryId = "007660";
 		GetFactoryDataFromTeamcenter dataFromTeamcenter = new GetFactoryDataFromTeamcenter(factoryId);
 		ArrayList<MachineProperties> factoryMachines = dataFromTeamcenter.getMachineIds();
@@ -57,44 +57,29 @@ public class Main {
 			System.out.println(factoryMachines.get(i).getId());
 		}*/
 		
-		@SuppressWarnings("resource")
+		/*@SuppressWarnings("resource")
 		ServerSocket ClientCommunicationSocket = new ServerSocket(35010);
 		Socket socket = ClientCommunicationSocket.accept();
 		CADConverter cadConverter = new CADConverter("C:\\Teamcenter önemli\\jtfiles\\gokart_main_assy.jt");
 		
 		System.out.println(cadConverter.getCADFileFinal());
 	    File file = new File(cadConverter.getCADFileFinal());
-	 
+		PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
+
+	    //send file length
+	    out.println(file.length());
+
 	    //read file to buffer
 	    byte[] buffer = new byte[(int)file.length()];
 	    DataInputStream dis = new DataInputStream(new FileInputStream(file));
 	    dis.read(buffer, 0, buffer.length);
-	    
-		OutputStream output = socket.getOutputStream();
-	    PrintWriter writer = new PrintWriter(output, true);
-	    ByteEntity byteEntity = new ByteEntity();
-	    byteEntity.setFileSize(buffer);
-	    Gson gson = new GsonBuilder().create();
-	    String input = gson.toJson(byteEntity);
-	    writer.println(input);
-		/*
-		PrintWriter out = new PrintWriter(socket.getOutputStream(),true);
 
-
-		    //send file length
-		    out.println(file.length());
-
-		    //read file to buffer
-		    byte[] buffer = new byte[(int)file.length()];
-		    DataInputStream dis = new DataInputStream(new FileInputStream(file));
-		    dis.read(buffer, 0, buffer.length);
-
-		    //send file
-		    BufferedOutputStream bos = new BufferedOutputStream(socket.getOutputStream());
-		    bos.write(buffer);
-		    bos.flush();
-		    dis.close();*/
-		//ClientCommunicationSocket.close();
+	    //send file
+	    BufferedOutputStream bos = new BufferedOutputStream(socket.getOutputStream());
+	    bos.write(buffer);
+	    bos.flush();
+	    dis.close();
+		ClientCommunicationSocket.close();*/
 	}
 	
 	private AppXSession session;
