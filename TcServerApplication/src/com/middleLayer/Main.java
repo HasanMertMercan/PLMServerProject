@@ -26,7 +26,6 @@ import com.optimisation.City;
 import com.optimisation.OptimiseRootInsidePlant;
 import com.optimisation.SelectMachinesWithYellowErrorState;
 import com.properties.AcceptedJsonObject;
-import com.properties.ByteEntity;
 import com.properties.LoginProperties;
 import com.properties.MachineProperties;
 import com.properties.UpdateInstructionListProperties;
@@ -139,8 +138,8 @@ public class Main {
 					
 					String userName = loginProperties.getUsername();
 					String password = loginProperties.getPassword();
-					//createTeamcenterSession("http://127.0.0.1:8080", userName, password);
-					if(/*this.user.get_user_id().equals(userName)*/ userName.equals("e1") && password.equals("123hm123")) 
+					createTeamcenterSession("http://teamcenter1.hs.local:8080/tc", userName, password);
+					if(this.user.get_user_id().equals(userName) /*userName.equals("e1") && password.equals("123hm123")*/) 
 					{
 						isSessionCreated = true;
 					}
@@ -340,7 +339,7 @@ public class Main {
 		}
 		
 		sessionService.setObjectPropertyPolicy(oppolicy);
-		this.fileManager = new FileManagementUtility(AppXSession.getConnection()); // Get and cache the file manager
+		//this.fileManager = new FileManagementUtility(AppXSession.getConnection()); // Get and cache the file manager
 	}
 
 	
