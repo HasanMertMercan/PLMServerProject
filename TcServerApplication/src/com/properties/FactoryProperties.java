@@ -1,6 +1,4 @@
-package com.middleLayer;
-
-import com.properties.MachineProperties;
+package com.properties;
 
 public class FactoryProperties {
 	

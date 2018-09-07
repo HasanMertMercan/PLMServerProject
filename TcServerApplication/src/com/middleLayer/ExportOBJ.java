@@ -18,20 +18,27 @@ public class ExportOBJ {
 	 */
 	
 	private String finalName;
-	public ExportOBJ(String fileName){ //filename is the full path of the .jt file
+	
+	public ExportOBJ(String fileName) //filename is the full path of the .jt file
+	{ 
+		createOBJFile(fileName);
+	}
+	
+	private void createOBJFile(String filename) 
+	{
 		try {
 			// Load a JT file
 			CADImportInterface cadImportInterface = new JTImporterImplementation();
-			cadImportInterface.importFile(fileName, null);
+			cadImportInterface.importFile(filename, null);
 			
 			String newDirection = "C:\\CADConversion";
-			String[] files = fileName.split("\\\\");
+			String[] files = filename.split("\\\\");
 			int i = files.length;
 			String newfilename = newDirection + "\\\\" + files[i-1];
 			
 			// Write the OBJ file
 			CADExportInterface cadExportInterface = new OBJExporterImplementation();
-			cadExportInterface.exportFile(newfilename.substring(0, newfilename.length()-3) + ".obj", new CADExportContainer(cadImportInterface, fileName), null);
+			cadExportInterface.exportFile(newfilename.substring(0, newfilename.length()-3) + ".obj", new CADExportContainer(cadImportInterface, filename), null);
 			finalName = newfilename.substring(0, newfilename.length()-3) + ".obj";
 			
 		} catch(Exception exception){

@@ -18,8 +18,8 @@ public class GetToolDataFromTeamcenter {
 	{
 		GetFileFromTeamcenter getFileFromTeamcenter = new GetFileFromTeamcenter(toolId, fileName, revisionId);
 		String absoluteFileName = getFileFromTeamcenter.getFile().getAbsolutePath();
-		CADConverter cadConverter = new CADConverter(absoluteFileName);
-		toolData.get(0).setToolCADFile(cadConverter.getCADFileFinal()); //This slot will be filled by String
+		ExportOBJ exportOBJ = new ExportOBJ(absoluteFileName);
+		toolData.get(0).setToolCADFile(exportOBJ.getFinalFileName()); //This slot will be filled by String
 	}
 
 	public ArrayList<ToolProperties> getToolData()

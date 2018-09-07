@@ -17,16 +17,16 @@ public class GetMachineDataFromTeamcenter {
 		//TODO
 		GetFileFromTeamcenter getFileFromTeamcenter = new GetFileFromTeamcenter(machineId, fileName, revisionId);
 		String absoluteFileName = getFileFromTeamcenter.getFile().getAbsolutePath();
-		CADConverter cadConverter = new CADConverter(absoluteFileName);
-		machineData.get(0).setMachineCADFile(cadConverter.getCADFileFinal()); //This slot will be filled by String
+		ExportOBJ exportOBJ = new ExportOBJ(absoluteFileName);
+		machineData.get(0).setMachineCADFile(exportOBJ.getFinalFileName()); //This slot will be filled by String
 	}
 	
 	//Test Constructor
 	public GetMachineDataFromTeamcenter(String absoluteFileName) throws IOException, InterruptedException  
 	{
-		CADConverter cadConverter = new CADConverter(absoluteFileName);
+		ExportOBJ exportOBJ = new ExportOBJ(absoluteFileName);
 		machineData.add(machineProperties);
-		machineData.get(0).setMachineCADFile(cadConverter.getCADFileFinal());
+		machineData.get(0).setMachineCADFile(exportOBJ.getFinalFileName());
 	}
 	
 	public ArrayList<MachineProperties> getMachineData()

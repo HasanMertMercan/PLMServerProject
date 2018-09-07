@@ -14,12 +14,11 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
-import com.teamcenter.soa.client.FileManagementUtility;
-import com.teamcenter.soa.common.ObjectPropertyPolicy;
 import com.teamcenter.soa.exceptions.CanceledOperationException;
 import com.teamcenter.soa.exceptions.NotLoadedException;
 import com.teamcenter.soa.client.model.strong.User;
 import com.communication.CommunicationMain;
+import com.communication.CreateTeamcenterConnection;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.optimisation.City;
@@ -29,9 +28,6 @@ import com.properties.AcceptedJsonObject;
 import com.properties.LoginProperties;
 import com.properties.MachineProperties;
 import com.properties.UpdateInstructionListProperties;
-import com.teamcenter.clientx.AppXSession;
-import com.teamcenter.schemas.soa._2006_03.exceptions.InvalidCredentialsException;
-import com.teamcenter.services.strong.core.SessionService;
 
 public class Main {
 	
@@ -81,10 +77,7 @@ public class Main {
 		ClientCommunicationSocket.close();*/
 	}
 	
-	private AppXSession session;
-	private User user;
-	@SuppressWarnings("unused")
-	private FileManagementUtility fileManager;
+
 	private boolean isSessionCreated;
 	
 	public Main() throws IOException, NotLoadedException, CanceledOperationException, InterruptedException
@@ -138,8 +131,10 @@ public class Main {
 					
 					String userName = loginProperties.getUsername();
 					String password = loginProperties.getPassword();
-					createTeamcenterSession("http://teamcenter1.hs.local:8080/tc", userName, password);
-					if(this.user.get_user_id().equals(userName) /*userName.equals("e1") && password.equals("123hm123")*/) 
+					CreateTeamcenterConnection createTeamcenterConnection = new CreateTeamcenterConnection(userName, password);
+					User user = createTeamcenterConnection.getUser();
+					//createTeamcenterSession("http://teamcenter1.hs.local:8080/tc", userName, password);
+					if(user.get_userid().equals(userName) /*userName.equals("e1") && password.equals("123hm123")*/) 
 					{
 						isSessionCreated = true;
 					}
@@ -305,42 +300,7 @@ public class Main {
 			}
 	}
 		
-	public void createTeamcenterSession(String host, String username, String password) throws InvalidCredentialsException, CanceledOperationException
-	{
-		System.out.println("Starting a session on " + host); // prints on screen the host for the session
-		this.session = new AppXSession (host);
-		System.out.println("Logging in with username " + username); // prints on screen the session's user
-		this.user = (User) this.session.login(username, password); // uses username and password to log into Teamcenter
-		
-		try
-		{
-			System.out.println("logged in as user " + this.user.get_user_name());
-		}
-		catch (NotLoadedException e)
-		{
-			throw new RuntimeException(e);
-		}
-		/** Get the session service and set the object property policy in Teamcenter */
-		SessionService sessionService = SessionService.getService(AppXSession.getConnection());
-		
-		ObjectPropertyPolicy oppolicy = new ObjectPropertyPolicy();
-		
-		//TODO
-		//Add necessary attirbutes to oppolicy.xml file. 
-		String path = Main.class.getResource("/oppolicy.xml").toString();
-		
-		try
-		{
-			oppolicy.load(path);
-		}
-		catch (IOException e)
-		{
-			throw new RuntimeException(e);
-		}
-		
-		sessionService.setObjectPropertyPolicy(oppolicy);
-		//this.fileManager = new FileManagementUtility(AppXSession.getConnection()); // Get and cache the file manager
-	}
+	
 
 	
 }
